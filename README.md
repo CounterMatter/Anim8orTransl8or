@@ -260,7 +260,7 @@ instead of Bone Influences.
 For simplicity of implementation, Anim8or Transl8or will export each morph
 target as a separate COLLADA file. COLLADA does have the concept of morph
 targets, but the number of permutations of transforming between every morph
-taget quickly gets out of hand. Setting up the morph animation will have to be
+target quickly gets out of hand. Setting up the morph animation will have to be
 done manually in whichever engine or tool you import the COLLADA file into. In
 the future, perhaps only the morph animations actually used in the ANIM8OR
 "scene" or only specified combinations can be exported.
