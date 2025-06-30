@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -40,7 +40,7 @@ namespace Anim8orTransl8or.Utility
          m.pivot = p?.pivot;
 
          // TODO: Support pathcom?
-         callback?.Invoke($"The \"{p?.name?.text}\" pathcom is not supported. Please convert it to a mesh in Anim8or.");
+         callback?.Invoke($"The \"{p?.name?.value}\" pathcom is not supported. Please convert it to a mesh in Anim8or.");
 
          return m;
       }

@@ -1,7 +1,7 @@
 # Anim8or Transl8or
 Anim8or Transl8or converts ANIM8OR (\*.an8) files into COLLADA (\*.dae) files.
 Download the latest release here:
-https://github.com/Enumer8/Anim8orTransl8or/releases.
+https://github.com/CounterMatter/Anim8orTransl8or/releases.
 
 (For more information on Anim8or®, please visit http://www.anim8or.com/)
 
@@ -124,7 +124,7 @@ Note: Just add a reference to Anim8orTransl8or.dll to your .NET project.
  * ANIM8OR "sequence" converts to COLLADA "animation"
 
 ## Not Yet Supported
- * ANIM8OR "subdivision", "pathcom", "textcom", "modifier", "image", and "morphtarget"
+ * ANIM8OR "subdivision", "pathcom", "textcom", "modifier", and "image"
  * ANIM8OR "scene"
  * Two-sided materials
  * Bone degrees of freedom
@@ -200,8 +200,13 @@ approximately like COLLADA's LINEAR. The floatkey modifier "T" seems to scale a
 "S"-like curve and then step change at the end. There does not seem to be a
 good parallel in COLLADA. Reverse engineering Anim8or's behavior shows that
 there are some strange special cases that don't follow the approximate rules
-above. For the above reasons, Anim8or Transl8or uses HERMITE interpolation for
-all key frames. Some day the accuracy could be improved.
+above. Preferably, Anim8or Transl8or would use HERMITE interpolation, but
+Blender does not support it. For all of these reasons, LINEAR interpolation is
+used for all key frames.
+
+###### Blender Specific
+Blender cannot import animations when HERMITE is used. 3ds Max does not seem to
+have this issue.
 
 ###### 3ds Max Specific
 The converted animations mostly appear correct in Blender and 3ds Max. By
@@ -210,17 +215,19 @@ animations. This results in a lot of incorrect rotations. The rotation
 controller can be changed by clicking Animation->Rotation
 Controllers->Quaternion (TCB). This seems to fix most of the issues, but it is
 still possible for an animation to interpolate the exact opposite direction as
-expected. More investigation is needed. Blender does not seem to have any
-issues.
+expected. More investigation is needed. Blender does not seem to have this
+issue.
 
 #### Multiple Objects/Figures/Sequences/Scenes
 ANIM8OR can store completely independent objects, figures, sequences, and
 scenes in the same file. There doesn't seem to be a good way to do the same in
 a COLLADA file. Some possible workarounds, such as combining all sequences into
 the same timeline, are not appealing, so Anim8or Transl8or splits each object,
-figure, sequence, and scene into a separate COLLADA file. GL Transmission
+figure, and sequence into a separate COLLADA file. GL Transmission
 Format is very promising in this regard (see https://www.khronos.org/gltf/), so
-it may be supported as an alternate output format some day.
+it may be supported as an alternate output format some day. As far as I can see,
+the concept of "scenes" does not exist at all in the COLLADA format, so those
+cannot be converted.
 
 #### Procedural Meshes
 ANIM8OR supports spheres, cylinders, and cubes that are calculated
@@ -249,11 +256,27 @@ tested to match. However, if there are issues, Anim8or v1.00 can be forced to
 output the exact weights by double-clicking the figure and choosing Weights
 instead of Bone Influences.
 
+#### Morph Targets
+For simplicity of implementation, Anim8or Transl8or will export each morph
+target as a separate COLLADA file. COLLADA does have the concept of morph
+targets, but the number of permutations of transforming between every morph
+taget quickly gets out of hand. Setting up the morph animation will have to be
+done manually in whichever engine or tool you import the COLLADA file into. In
+the future, perhaps only the morph animations actually used in the ANIM8OR
+"scene" or only specified combinations can be exported.
+
+#### Layer Visibility
+ANIM8OR supports assigning meshes to one of eight layers. These layers can be
+configured to be visible or hidden. It doesn't appear that COLLADA supports
+hidden objects. If it is requested, Anim8or Transl8or could add an option to
+remove or include hidden objects. For now, all objects will be exported and will
+be visible.
+
 ## Report Problems
 Anim8or Transl8or is immature, the ANIM8OR (\*.an8) format is not completely
 documented, and not all COLLADA (\*.dae) importers are perfect, so there will
 be problems and incompatibilities. Please enter issues on GitHub
-(https://github.com/Enumer8/Anim8orTransl8or/issues). Please don't enter issues
+(https://github.com/CounterMatter/Anim8orTransl8or/issues). Please don't enter issues
 about things that are [not supported yet](#not-supported-yet). For the best
 chance at fixing the issue, please attach or link to the ANIM8OR (\*.an8) file
 that causes the problem and carefully explain how to recreate the problem.
@@ -261,9 +284,9 @@ that causes the problem and carefully explain how to recreate the problem.
 ## Contribute
 Anim8or Transl8or is open source software. User contributions are appreciated.
 Please create a pull request on GitHub
-(https://github.com/Enumer8/Anim8orTransl8or/pulls). Please focus on developing
+(https://github.com/CounterMatter/Anim8orTransl8or/pulls). Please focus on developing
 things that are [not supported yet](#not-supported-yet) and be sure to test
-your changes. Visual Studio Community 2017 is recommended for development.
+your changes. Visual Studio Community 2022 is recommended for development.
 Otherwise, uploading example ANIM8OR files, explaining how to convert something
 more accurately, or creating unit tests are also appreciated.
 
@@ -273,6 +296,11 @@ more accurately, or creating unit tests are also appreciated.
  * Thanks, ThinMatrix, for a great reference for COLLADA files (https://www.youtube.com/watch?v=z0jb1OBw45I)
 
 ## Change log
+ * Anim8orTransl8or v0.8.0
+   * Added conversion for ANIM8OR "morphtarget".
+   * Added support for floating point values in ANIM8OR "size" (even though the spec says they should be int values).
+   * Fixed parsing of ANIM8OR "controller".
+   * Added support for parsing various chunks that aren't used in the conversion.
  * Anim8orTransl8or v0.7.3
    * Fixed internationalization issues.
  * Anim8orTransl8or v0.7.2

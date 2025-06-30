@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -47,7 +47,7 @@ namespace Anim8orTransl8or.Utility
             m.materiallist = new materiallist();
             m.materiallist.materialname = new @string[1];
             m.materiallist.materialname[0] = new @string();
-            m.materiallist.materialname[0].text = s.material.name;
+            m.materiallist.materialname[0].value = s.material.name;
          }
 
          List<point> points = new List<point>();
@@ -55,36 +55,36 @@ namespace Anim8orTransl8or.Utility
          List<facedata> facedatas = new List<facedata>();
 
          // Note: These defaults and limits were reversed engineered.
-         Double diameter = (s?.diameter?.text ?? 10).Limit(0);
+         Double diameter = (s?.diameter?.value ?? 10).Limit(0);
          Int32 longitude = (Int32)(s?.longlat?.longitude ?? 12).Limit(0, 32);
          Int32 latitude = (Int32)(s?.longlat?.latitude ?? 8).Limit(0, 16);
          // Note: Anim8or v1.00's editor limits geodesic from 1 to 6, but
          // the actual mesh in the object editor can be between 0 and 32.
-         Int32 geodesic = (Int32)(s?.geodesic?.text ?? 0).Limit(0, 32);
+         Int32 geodesic = (Int32)(s?.geodesic?.value ?? 0).Limit(0, 32);
 
          if ( callback != null )
          {
-            if ( s?.diameter != null && s.diameter.text != diameter )
+            if ( s?.diameter != null && s.diameter.value != diameter )
             {
-               callback($"The \"{s.name?.text}\" sphere's diameter of {s.diameter.text} has been limited to {diameter}.");
+               callback($"The \"{s.name?.value}\" sphere's diameter of {s.diameter.value} has been limited to {diameter}.");
             }
 
             if ( s?.longlat != null )
             {
                if ( s.longlat.longitude != longitude )
                {
-                  callback($"The \"{s.name?.text}\" sphere's longitude of {s.longlat.longitude} has been limited to {longitude}.");
+                  callback($"The \"{s.name?.value}\" sphere's longitude of {s.longlat.longitude} has been limited to {longitude}.");
                }
 
                if ( s.longlat.latitude != latitude )
                {
-                  callback($"The \"{s.name?.text}\" sphere's latitude of {s.longlat.latitude} has been limited to {latitude}.");
+                  callback($"The \"{s.name?.value}\" sphere's latitude of {s.longlat.latitude} has been limited to {latitude}.");
                }
             }
 
-            if ( s?.geodesic != null && s.geodesic.text != geodesic )
+            if ( s?.geodesic != null && s.geodesic.value != geodesic )
             {
-               callback($"The \"{s.name?.text}\" sphere's geodesic of {s.geodesic.text} has been limited to {geodesic}.");
+               callback($"The \"{s.name?.value}\" sphere's geodesic of {s.geodesic.value} has been limited to {geodesic}.");
             }
          }
 

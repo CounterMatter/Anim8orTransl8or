@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -47,7 +47,7 @@ namespace Anim8orTransl8or.Utility
             m.materiallist = new materiallist();
             m.materiallist.materialname = new @string[1];
             m.materiallist.materialname[0] = new @string();
-            m.materiallist.materialname[0].text = c.material.name;
+            m.materiallist.materialname[0].value = c.material.name;
          }
 
          List<point> points = new List<point>();
@@ -68,17 +68,17 @@ namespace Anim8orTransl8or.Utility
             {
                if ( c.scale.x != scaleX )
                {
-                  callback($"The \"{c.name?.text}\" cube's X scale of {c.scale.x} has been limited to {scaleX}.");
+                  callback($"The \"{c.name?.value}\" cube's X scale of {c.scale.x} has been limited to {scaleX}.");
                }
 
                if ( c.scale.y != scaleY )
                {
-                  callback($"The \"{c.name?.text}\" cube's Y scale of {c.scale.y} has been limited to {scaleY}.");
+                  callback($"The \"{c.name?.value}\" cube's Y scale of {c.scale.y} has been limited to {scaleY}.");
                }
 
                if ( c.scale.z != scaleZ )
                {
-                  callback($"The \"{c.name?.text}\" cube's Z scale of {c.scale.z} has been limited to {scaleZ}.");
+                  callback($"The \"{c.name?.value}\" cube's Z scale of {c.scale.z} has been limited to {scaleZ}.");
                }
             }
 
@@ -86,17 +86,17 @@ namespace Anim8orTransl8or.Utility
             {
                if ( c.divisions.x != divisionsX )
                {
-                  callback($"The \"{c.name?.text}\" cube's X divisions of {c.divisions.x} has been limited to {divisionsX}.");
+                  callback($"The \"{c.name?.value}\" cube's X divisions of {c.divisions.x} has been limited to {divisionsX}.");
                }
 
                if ( c.divisions.y != divisionsY )
                {
-                  callback($"The \"{c.name?.text}\" cube's Y divisions of {c.divisions.y} has been limited to {divisionsY}.");
+                  callback($"The \"{c.name?.value}\" cube's Y divisions of {c.divisions.y} has been limited to {divisionsY}.");
                }
 
                if ( c.divisions.z != divisionsZ )
                {
-                  callback($"The \"{c.name?.text}\" cube's Z divisions of {c.divisions.z} has been limited to {divisionsZ}.");
+                  callback($"The \"{c.name?.value}\" cube's Z divisions of {c.divisions.z} has been limited to {divisionsZ}.");
                }
             }
          }

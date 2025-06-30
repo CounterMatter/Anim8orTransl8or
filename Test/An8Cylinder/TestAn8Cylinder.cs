@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -37,10 +37,10 @@ namespace Anim8orTransl8or.Test
 
          // Test a cylinder with a couple invalid settings
          cylinder cylinder = new cylinder();
-         cylinder.name = new @string() { text = "EdgeCase" };
-         cylinder.length = new @float() { text = -1 }; // invalid
-         cylinder.diameter = new @float() { text = 1 };
-         cylinder.topdiameter = new @float() { text = 1 };
+         cylinder.name = new @string() { value = "EdgeCase" };
+         cylinder.length = new @float() { value = -1 }; // invalid
+         cylinder.diameter = new @float() { value = 1 };
+         cylinder.topdiameter = new @float() { value = 1 };
          cylinder.longlat = new longlat();
          cylinder.longlat.longitude = 2; // invalid
          cylinder.longlat.latitude = 1;

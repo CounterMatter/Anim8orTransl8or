@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -46,7 +46,7 @@ namespace Anim8orTransl8or.Test
 
          ANIM8OR angle = LoadAn8File(angleFile);
 
-         Int32 totalFrames = (Int32)angle.sequence[0].frames.text;
+         Int32 totalFrames = (Int32)angle.sequence[0].frames.value;
 
          for ( Int32 i = 0; i < totalFrames; i++ )
          {

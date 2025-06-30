@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -37,7 +37,7 @@ namespace Anim8orTransl8or.Test
 
          // Test a cube with a couple invalid settings
          cube cube = new cube();
-         cube.name = new @string() { text = "EdgeCase" };
+         cube.name = new @string() { value = "EdgeCase" };
          cube.scale = new scale();
          cube.scale.x = -1; // invalid
          cube.scale.y = 2;

@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -49,7 +49,7 @@ namespace Anim8orTransl8or.Utility
             m.materiallist = new materiallist();
             m.materiallist.materialname = new @string[1];
             m.materiallist.materialname[0] = new @string();
-            m.materiallist.materialname[0].text = c.material.name;
+            m.materiallist.materialname[0].value = c.material.name;
          }
 
          List<point> points = new List<point>();
@@ -57,39 +57,39 @@ namespace Anim8orTransl8or.Utility
          List<facedata> facedatas = new List<facedata>();
 
          // Note: These defaults and limits were reversed engineered.
-         Double length = (c?.length?.text ?? 1).Limit(0);
-         Double startDiameter = (c?.diameter?.text ?? 1).Limit(0);
-         Double endDiameter = (c?.topdiameter?.text ?? 1).Limit(0);
+         Double length = (c?.length?.value ?? 1).Limit(0);
+         Double startDiameter = (c?.diameter?.value ?? 1).Limit(0);
+         Double endDiameter = (c?.topdiameter?.value ?? 1).Limit(0);
          Int32 longitude = (Int32)(c?.longlat?.longitude ?? 12).Limit(3, 100);
          Int32 latitude = (Int32)(c?.longlat?.latitude ?? 8).Limit(1, 100);
 
          if ( callback != null )
          {
-            if ( c?.length != null && c.length.text != length )
+            if ( c?.length != null && c.length.value != length )
             {
-               callback($"The \"{c.name?.text}\" cylinder's length of {c.length.text} has been limited to {length}.");
+               callback($"The \"{c.name?.value}\" cylinder's length of {c.length.value} has been limited to {length}.");
             }
 
-            if ( c?.diameter != null && c.diameter.text != startDiameter )
+            if ( c?.diameter != null && c.diameter.value != startDiameter )
             {
-               callback($"The \"{c.name?.text}\" cylinder's diameter of {c.diameter.text} has been limited to {startDiameter}.");
+               callback($"The \"{c.name?.value}\" cylinder's diameter of {c.diameter.value} has been limited to {startDiameter}.");
             }
 
-            if ( c?.topdiameter != null && c.topdiameter.text != endDiameter )
+            if ( c?.topdiameter != null && c.topdiameter.value != endDiameter )
             {
-               callback($"The \"{c.name?.text}\" cylinder's top diameter of {c.topdiameter.text} has been limited to {endDiameter}.");
+               callback($"The \"{c.name?.value}\" cylinder's top diameter of {c.topdiameter.value} has been limited to {endDiameter}.");
             }
 
             if ( c?.longlat != null )
             {
                if ( c.longlat.longitude != longitude )
                {
-                  callback($"The \"{c.name?.text}\" cylinder's longitude of {c.longlat.longitude} has been limited to {longitude}.");
+                  callback($"The \"{c.name?.value}\" cylinder's longitude of {c.longlat.longitude} has been limited to {longitude}.");
                }
 
                if ( c.longlat.latitude != latitude )
                {
-                  callback($"The \"{c.name?.text}\" cylinder's latitude of {c.longlat.latitude} has been limited to {latitude}.");
+                  callback($"The \"{c.name?.value}\" cylinder's latitude of {c.longlat.latitude} has been limited to {latitude}.");
                }
             }
          }

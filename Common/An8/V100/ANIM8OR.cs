@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -84,22 +84,22 @@ namespace Anim8orTransl8or.An8.V100
 
    public class @int
    {
-      public Int64 text;
+      public Int64 value;
    }
 
    public class @float
    {
-      public Double text;
+      public Double value;
    }
 
    public class @string
    {
-      public String text;
+      public String value;
    }
 
    public class @wstring
    {
-      public String text;
+      public String value;
    }
    #endregion
 
@@ -165,6 +165,11 @@ namespace Anim8orTransl8or.An8.V100
       /// TODO: This was undocumented at the time of writing.
       /// </summary>
       public film film;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public environmentimage image;
    }
 
    public class grid
@@ -222,14 +227,16 @@ namespace Anim8orTransl8or.An8.V100
    public class size
    {
       /// <summary>
-      /// TODO: This was undocumented at the time of writing.
+      /// Note: The documentation says this is an "int", but an8 files in the
+      /// wild have decimal digits.
       /// </summary>
-      public Int64 x;
+      public Double x;
 
       /// <summary>
-      /// TODO: This was undocumented at the time of writing.
+      /// Note: The documentation says this is an "int", but an8 files in the
+      /// wild have decimal digits.
       /// </summary>
-      public Int64 y;
+      public Double y;
    }
 
    public class ratio
@@ -245,6 +252,14 @@ namespace Anim8orTransl8or.An8.V100
       public Double denominator;
    }
    #endregion
+
+   public class environmentimage
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public size size;
+   }
    #endregion
 
    #region texture
@@ -553,6 +568,11 @@ namespace Anim8orTransl8or.An8.V100
       public String name;
 
       /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layers layers;
+
+      /// <summary>
       /// <material> chunks in an <object> chunk are local to that object and
       /// cannot be used in other objects. There can be any number of
       /// <material> and <component> chunks in any order. Normally the
@@ -577,8 +597,126 @@ namespace Anim8orTransl8or.An8.V100
       public modifier1[] modifier;
       public image[] image;
       public group1[] group;
-      // TODO: morphtarget?
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public morphtarget[] morphtarget;
    }
+
+   #region layers
+   public class layers
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public visible visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public locked locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public @default @default;
+   }
+
+   public class visible
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer0visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer1visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer2visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer3visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer4visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer5visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer6visible;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer7visible;
+   }
+
+   public class locked
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer0locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer1locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer2locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer3locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer4locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer5locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer6locked;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 layer7locked;
+   }
+
+   public class @default
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 value;
+   }
+   #endregion
 
    #region mesh
    public class mesh
@@ -611,6 +749,11 @@ namespace Anim8orTransl8or.An8.V100
       /// Object's local materials.
       /// </summary>
       public material material;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
 
       /// <summary>
       /// This is the threshold angle in degrees that determines if an edge is
@@ -659,6 +802,11 @@ namespace Anim8orTransl8or.An8.V100
       /// One set of <facedata> data is listed for each face.
       /// </summary>
       public faces faces;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public morphoffsets[] morphoffsets;
    }
 
    #region base
@@ -697,6 +845,11 @@ namespace Anim8orTransl8or.An8.V100
    {
       public origin origin;
       public orientation orientation;
+   }
+
+   public class layer
+   {
+      public Int64 value;
    }
 
    public class materiallist
@@ -854,6 +1007,36 @@ namespace Anim8orTransl8or.An8.V100
    }
    #endregion
    #endregion
+
+   #region morphoffsets
+   public class morphoffsets
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public String name;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public morphoffsetdata[] morphoffsetdata;
+   }
+
+   #region morphoffsetdata
+   public class morphoffsetdata
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 pointindex;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public point point;
+   }
+   #endregion
+   #endregion
    #endregion
 
    #region sphere
@@ -887,6 +1070,11 @@ namespace Anim8orTransl8or.An8.V100
       /// Object's local materials.
       /// </summary>
       public material material;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
 
       /// <summary>
       /// TODO: This was undocumented at the time of writing.
@@ -945,6 +1133,11 @@ namespace Anim8orTransl8or.An8.V100
       /// Object's local materials.
       /// </summary>
       public material material;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
 
       /// <summary>
       /// This is the length of the cylinder.
@@ -1014,6 +1207,11 @@ namespace Anim8orTransl8or.An8.V100
       public material material;
 
       /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
+
+      /// <summary>
       /// The dimensions of the cube in the X, Y and Z directions.
       /// </summary>
       public scale scale;
@@ -1070,6 +1268,11 @@ namespace Anim8orTransl8or.An8.V100
       /// Object's local materials.
       /// </summary>
       public material material;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
 
       /// <summary>
       /// This is the threshold angle in degrees that determines if an edge is
@@ -1130,6 +1333,11 @@ namespace Anim8orTransl8or.An8.V100
       /// One set of <facedata> data is listed for each face.
       /// </summary>
       public faces faces;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public morphoffsets[] morphoffsets;
    }
    #endregion
 
@@ -1148,6 +1356,11 @@ namespace Anim8orTransl8or.An8.V100
       /// group is it's parent, otherwise it is the Object.
       /// </summary>
       public @base @base;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
 
       /// <summary>
       /// The <pivot> chunk specifies the location and orientation of the
@@ -1238,6 +1451,11 @@ namespace Anim8orTransl8or.An8.V100
       public @base @base;
 
       /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
+
+      /// <summary>
       /// The <pivot> chunk specifies the location and orientation of the
       /// pivot, the coordinate system used when you interactively scale and
       /// rotate a component in the Object editor.
@@ -1302,6 +1520,11 @@ namespace Anim8orTransl8or.An8.V100
       /// group is it's parent, otherwise it is the Object.
       /// </summary>
       public @base @base;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
 
       /// <summary>
       /// The <pivot> chunk specifies the location and orientation of the
@@ -1416,6 +1639,11 @@ namespace Anim8orTransl8or.An8.V100
       public @base @base;
 
       /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
+
+      /// <summary>
       /// The <pivot> chunk specifies the location and orientation of the
       /// pivot, the coordinate system used when you interactively scale and
       /// rotate a component in the Object editor.
@@ -1444,6 +1672,11 @@ namespace Anim8orTransl8or.An8.V100
       public @base @base;
 
       /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public layer layer;
+
+      /// <summary>
       /// The <pivot> chunk specifies the location and orientation of the
       /// pivot, the coordinate system used when you interactively scale and
       /// rotate a component in the Object editor.
@@ -1461,6 +1694,14 @@ namespace Anim8orTransl8or.An8.V100
       public modifier1[] modifier;
       public image[] image;
       public group1[] group;
+   }
+
+   public class morphtarget
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public @string name;
    }
    #endregion
 
@@ -1763,20 +2004,39 @@ namespace Anim8orTransl8or.An8.V100
    {
       public String bone;
       public String axis;
-      public floattrack track;
-
-      // TODO: Are these part of jointangle?
-      //public pointtrack track;
-      //public qtrack track;
-      //public booleantrack track;
+      public track track;
    }
 
-   #region floattrack
-   public class floattrack
+   #region track
+   public class track
    {
+      public booleankey[] booleankey;
       public floatkey[] floatkey;
+      public pointkey[] pointkey;
+      public qkey[] qkey;
    }
 
+   public class booleankey
+   {
+      /// <summary>
+      /// The first <$int> is the frame number for this key.
+      /// </summary>
+      public Int64 frame;
+
+      /// <summary>
+      /// The second <$int> is the value.  It must be 0 or 1.  0 means False
+      /// and 1 means True.
+      /// </summary>
+      public Int64 value;
+
+      /// <summary>
+      /// <$string> is a string used to modify the behavior of this knot. It is
+      /// currently ignored.
+      /// </summary>
+      public String modifier;
+   }
+
+   #region floatkey
    public class floatkey
    {
       /// <summary>
@@ -1825,12 +2085,6 @@ namespace Anim8orTransl8or.An8.V100
    }
    #endregion
 
-   #region pointtrack
-   public class pointtrack
-   {
-      public pointkey[] pointkey;
-   }
-
    public class pointkey
    {
       /// <summary>
@@ -1859,13 +2113,6 @@ namespace Anim8orTransl8or.An8.V100
       /// </summary>
       public String modifier;
    }
-   #endregion
-
-   #region qtrack
-   public class qtrack
-   {
-      public qkey[] qkey;
-   }
 
    public class qkey
    {
@@ -1878,33 +2125,6 @@ namespace Anim8orTransl8or.An8.V100
       /// <quaternion> is the value.
       /// </summary>
       public quaternion value;
-
-      /// <summary>
-      /// <$string> is a string used to modify the behavior of this knot. It is
-      /// currently ignored.
-      /// </summary>
-      public String modifier;
-   }
-   #endregion
-
-   #region booleantrack
-   public class booleantrack
-   {
-      public booleankey[] booleankey;
-   }
-
-   public class booleankey
-   {
-      /// <summary>
-      /// The first <$int> is the frame number for this key.
-      /// </summary>
-      public Int64 frame;
-
-      /// <summary>
-      /// The second <$int> is the value.  It must be 0 or 1.  0 means False
-      /// and 1 means True.
-      /// </summary>
-      public Int64 value;
 
       /// <summary>
       /// <$string> is a string used to modify the behavior of this knot. It is
@@ -2140,6 +2360,11 @@ namespace Anim8orTransl8or.An8.V100
       public @float fov;
 
       /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public number number;
+
+      /// <summary>
       /// [ <scale> ] - A scale factor applied to the object before rendering.
       /// </summary>
       public scale scale;
@@ -2170,8 +2395,28 @@ namespace Anim8orTransl8or.An8.V100
    /// <summary>
    /// TODO: What does this mean?
    /// </summary>
+   public class number
+   {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public Int64 value;
+   }
+
+   /// <summary>
+   /// TODO: What does this mean?
+   /// </summary>
    public class controller
    {
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public String name;
+
+      /// <summary>
+      /// TODO: This was undocumented at the time of writing.
+      /// </summary>
+      public track track;
    }
 
    /// <summary>

@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -40,18 +40,21 @@ namespace Anim8orTransl8or.Utility
          m.name = s?.name;
          m.@base = s?.@base;
          m.pivot = s?.pivot;
-         m.smoothangle = s?.smoothangle;
          m.material = s?.material;
+         m.smoothangle = s?.smoothangle;
          m.materiallist = s?.materiallist;
          m.points = s?.points;
          m.normals = s?.normals;
          m.edges = s?.edges;
          m.texcoords = s?.texcoords;
          m.faces = s?.faces;
+         m.morphoffsets = s?.morphoffsets;
 
-         // TODO: Do we need to actually subdivide using 'working' or
-         // 'divisions'? How do we do it?
-         callback?.Invoke($"The \"{s?.name?.text}\" subdivision is not supported. Please convert it to a mesh in Anim8or.");
+         if ( s?.working?.value is Int64 working && working > 0 )
+         {
+            // TODO: Subdivide 'working' number of times. How do we do it?
+            callback?.Invoke($"The \"{s?.name?.value}\" subdivision will be exported without performing a subdivision. Please convert it to a mesh in Anim8or if subdivisions are desired.");
+         }
 
          return m;
       }

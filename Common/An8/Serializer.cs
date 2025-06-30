@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -99,7 +99,7 @@ namespace Anim8orTransl8or.An8
 
                if ( !known )
                {
-                  mCallback?.Invoke($"The \"{chunkName}\" chunk is not recognized.");
+                  mCallback?.Invoke($"({sr.Line}, {sr.Column}): The \"{chunkName}\" chunk is not recognized.");
 
                   String unknownChunk = ParseUnknownChunk(sr);
                   ParseWhiteSpace(sr);
@@ -132,8 +132,7 @@ namespace Anim8orTransl8or.An8
          }
          else
          {
-            throw new InvalidOperationException(
-               $"({sr.Line}, {sr.Column}): Encountered unexpected character: '{c}'");
+            throw new InvalidOperationException($"({sr.Line}, {sr.Column}): Encountered unexpected character: '{c}'");
          }
       }
 
@@ -454,7 +453,7 @@ namespace Anim8orTransl8or.An8
       static V100.edge ParseEdge(StreamReaderEx sr)
       {
          V100.edge edge = new V100.edge();
-         AssertChar(sr, (Char c) => IsPointStart(sr));
+         AssertChar(sr, (Char c) => IsEdgeStart(sr));
          ParseWhiteSpace(sr);
 
          edge.startpointindex = ParseInt(sr);
@@ -534,6 +533,26 @@ namespace Anim8orTransl8or.An8
          facedata.pointdata = pointdatas.ToArray();
 
          return facedata;
+      }
+
+      static Boolean IsMorphOffsetDataStart(StreamReaderEx sr)
+      {
+         return IsIntStart(sr);
+      }
+
+      /// <summary>
+      /// Reads an An8 morphoffsetdata, e.g. "77 (-0.33183 -1.0266 -0.51849)".
+      /// </summary>
+      static V100.morphoffsetdata ParseMorphOffsetData(StreamReaderEx sr)
+      {
+         V100.morphoffsetdata morphoffsetdata = new V100.morphoffsetdata();
+         morphoffsetdata.pointindex = ParseInt(sr);
+         ParseWhiteSpace(sr);
+
+         morphoffsetdata.point = ParsePoint(sr);
+         ParseWhiteSpace(sr);
+
+         return morphoffsetdata;
       }
 
       static Boolean IsWeightDataStart(StreamReaderEx sr)
@@ -761,6 +780,26 @@ namespace Anim8orTransl8or.An8
                fi.SetValue(o, facedatas.ToArray());
             }
             #endregion
+            #region Special Case - parsing morphoffsetdata
+            else if ( fi.FieldType == typeof(V100.morphoffsetdata) )
+            {
+               fi.SetValue(o, ParseMorphOffsetData(sr));
+               ParseWhiteSpace(sr);
+            }
+            else if ( fi.FieldType == typeof(V100.morphoffsetdata[]) )
+            {
+               List<V100.morphoffsetdata> morphoffsetdatas =
+                  new List<V100.morphoffsetdata>();
+
+               while ( IsMorphOffsetDataStart(sr) )
+               {
+                  morphoffsetdatas.Add(ParseMorphOffsetData(sr));
+                  ParseWhiteSpace(sr);
+               }
+
+               fi.SetValue(o, morphoffsetdatas.ToArray());
+            }
+            #endregion
             #region Special Case - parsing weightdata
             else if ( fi.FieldType == typeof(V100.weightdata) )
             {
@@ -838,7 +877,7 @@ namespace Anim8orTransl8or.An8
 
             if ( !known )
             {
-               mCallback?.Invoke($"The \"{chunkName}\" chunk is not recognized.");
+               mCallback?.Invoke($"({sr.Line}, {sr.Column}): The \"{chunkName}\" chunk is not recognized.");
 
                String unknownChunk = ParseUnknownChunk(sr);
                ParseWhiteSpace(sr);

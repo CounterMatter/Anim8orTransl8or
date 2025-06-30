@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -37,8 +37,8 @@ namespace Anim8orTransl8or.Test
 
          // Test a sphere with a couple invalid settings
          sphere sphere = new sphere();
-         sphere.name = new @string() { text = "EdgeCase" };
-         sphere.diameter = new @float() { text = -1 }; // invalid
+         sphere.name = new @string() { value = "EdgeCase" };
+         sphere.diameter = new @float() { value = -1 }; // invalid
          sphere.longlat = new longlat();
          sphere.longlat.longitude = 2;
          sphere.longlat.latitude = -2; // invalid

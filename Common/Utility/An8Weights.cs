@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -78,12 +78,12 @@ namespace Anim8orTransl8or.Utility
          matrix objectMatrix = boneMatrix.Transform(new matrix(
             n2.@base?.origin?.point ?? new point(),
             n2.@base?.orientation?.quaternion ?? quaternion.IDENTITY,
-            n2.scale?.text ?? 1));
+            n2.scale?.value ?? 1));
 
          // Sort the skeleton nodes that weight the object
          for ( Int32 i = 0; i < n2.weightedby?.Length; i++ )
          {
-            String boneName = n2.weightedby[i]?.text;
+            String boneName = n2.weightedby[i]?.value;
 
             for ( Int32 j = 0; j < skeletonNodes.Count; j++ )
             {
@@ -115,7 +115,7 @@ namespace Anim8orTransl8or.Utility
             weights weights = new weights();
             n2.weights = n2.weights.Append(weights);
 
-            weights.meshname = m?.name?.text;
+            weights.meshname = m?.name?.value;
 
             weightdata[] weightdata = new weightdata[
                m?.points?.point?.Length ?? 0];
@@ -186,7 +186,7 @@ namespace Anim8orTransl8or.Utility
             // Note: Anim8or v1.00 doesn't ignore the root bone's length when
             // calculating the influences (only when calculating the positions
             // of the other bones).
-            Double length = skeletonNode.Bone?.length?.text ?? 0;
+            Double length = skeletonNode.Bone?.length?.value ?? 0;
             point origin = skeletonNode.AbsoluteOrigin;
             quaternion orientation = skeletonNode.AbsoluteOrientation;
             influence influence = skeletonNode.Bone?.influence;
@@ -296,7 +296,7 @@ namespace Anim8orTransl8or.Utility
 
          if ( parentNode != null )
          {
-            node.Length = bone?.length?.text ?? 0.0;
+            node.Length = bone?.length?.value ?? 0.0;
             node.AbsoluteOrigin = parentNode.AbsoluteOrigin +
                parentNode.AbsoluteOrientation.Rotate(
                   new point(0, parentNode.Length, 0));

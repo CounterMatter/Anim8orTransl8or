@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -31,8 +31,8 @@ namespace Anim8orTransl8or.Test
       protected static void CompareMeshes(mesh expected, mesh actual)
       {
          Assert.AreEqual(
-            expected?.name?.text,
-            actual?.name?.text,
+            expected?.name?.value,
+            actual?.name?.value,
             "Mesh's name doesn't match.");
 
          Assert.AreEqual(
@@ -51,8 +51,8 @@ namespace Anim8orTransl8or.Test
             i++ )
          {
             Assert.AreEqual(
-               expected.materiallist.materialname[i]?.text,
-               actual.materiallist.materialname[i]?.text,
+               expected.materiallist.materialname[i]?.value,
+               actual.materiallist.materialname[i]?.value,
                "Mesh's material list {i}'s name doesn't match.");
          }
 

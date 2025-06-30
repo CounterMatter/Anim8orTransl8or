@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -54,9 +54,9 @@ namespace Anim8orTransl8or
          List<TextureNode> textureNodes = new List<TextureNode>();
          List<MaterialNode> materialNodes = new List<MaterialNode>();
 
-         if ( callback != null && an8?.header?.version?.text != null )
+         if ( callback != null && an8?.header?.version?.value != null )
          {
-            String version = an8.header.version.text;
+            String version = an8.header.version.value;
 
             if ( version != "1.00" )
             {
@@ -144,7 +144,7 @@ namespace Anim8orTransl8or
 
                try
                {
-                  png = Image.Load(Path.Combine(cwd, file?.text));
+                  png = Image.Load(Path.Combine(cwd, file?.value));
 
                   if ( texture?.invert != null )
                   {
@@ -171,6 +171,28 @@ namespace Anim8orTransl8or
                   Png = png,
                };
             }
+         }
+
+         // Create new objects for each morph target
+         if ( an8?.@object != null && an8.@object.Length > 0 )
+         {
+            List<@object> objects = new List<@object>();
+
+            foreach ( @object @object in an8.@object )
+            {
+               objects.Add(@object);
+
+               foreach ( morphtarget morphtarget in @object.morphtarget ??
+                  new morphtarget[0] )
+               {
+                  objects.Add(An8MorphTarget.Calculate(
+                     @object,
+                     morphtarget,
+                     callback));
+               }
+            }
+
+            an8.@object = objects.ToArray();
          }
 
          // Create the default material
@@ -327,7 +349,7 @@ namespace Anim8orTransl8or
                usedNames,
                lightNodes,
                (@object o) => false,
-               (figure f) => sequence.figure?.text == f.name);
+               (figure f) => sequence.figure?.value == f.name);
 
             CreateLibraryControllers(an8, callback, dae, usedNames, node);
 
@@ -357,6 +379,12 @@ namespace Anim8orTransl8or
                };
             }
          }
+
+         // Print a warning for each scene
+         foreach ( scene scene in an8?.scene ?? new scene[0] )
+         {
+            callback($"The \"{scene.name}\" scene is not supported. There is no equivalent in COLLADA.");
+         }
       }
 
       #region asset
@@ -368,8 +396,8 @@ namespace Anim8orTransl8or
          dae.asset.contributor = new assetContributor[1];
          dae.asset.contributor[0] = new assetContributor();
          dae.asset.contributor[0].author = "Anim8or v" +
-            an8.header?.version?.text ?? "0.0.0" + " build " +
-            an8.header?.build?.text ?? "1970.1.1";
+            an8.header?.version?.value ?? "0.0.0" + " build " +
+            an8.header?.build?.value ?? "1970.1.1";
          dae.asset.contributor[0].authoring_tool =
             assembly.Name + " v" + assembly.Version.ToString(3);
          dae.asset.contributor[0].comments =
@@ -593,7 +621,7 @@ namespace Anim8orTransl8or
                value.sid = "shininess";
 
                // TODO: Is shininess the same as phongsize/rough?
-               value.Value = surface?.phongsize?.text ?? 36;
+               value.Value = surface?.phongsize?.value ?? 36;
 
                shininess.Item = value;
             }
@@ -640,7 +668,7 @@ namespace Anim8orTransl8or
                reflectivity.Item = value;
             }
 
-            Double opacity = 1 - (surface?.alpha?.text ?? 255).Limit(0, 255) /
+            Double opacity = 1 - (surface?.alpha?.value ?? 255).Limit(0, 255) /
                255.0;
 
             // Transparent
@@ -699,11 +727,11 @@ namespace Anim8orTransl8or
          common_color_or_texture_type result =
             new common_color_or_texture_type();
 
-         if ( ambient?.texturename?.text != null )
+         if ( ambient?.texturename?.value != null )
          {
             foreach ( TextureNode textureNode in textureNodes )
             {
-               if ( textureNode.Texture?.name == ambient?.texturename?.text )
+               if ( textureNode.Texture?.name == ambient?.texturename?.value )
                {
                   common_color_or_texture_typeTexture texture =
                      new common_color_or_texture_typeTexture();
@@ -730,7 +758,7 @@ namespace Anim8orTransl8or
             // Note: We have to bake the factor into the color, since COLLADA
             // does not seem to support a separate factor. This means that,
             // unfortunately, factor won't work with images (only colors).
-            Double factor = ambient?.factor?.text ?? DefaultFactor(sid);
+            Double factor = ambient?.factor?.value ?? DefaultFactor(sid);
 
             Double red = ambient?.rgb?.red ?? DefaultRgb(sid);
             Double green = ambient?.rgb?.green ?? DefaultRgb(sid);
@@ -836,7 +864,7 @@ namespace Anim8orTransl8or
 
             // Convert the object to a group
             group1 group = new group1();
-            group.name = new @string() { text = @object?.name };
+            group.name = new @string() { value = @object?.name };
             group.mesh = @object?.mesh;
             group.sphere = @object?.sphere;
             group.cylinder = @object?.cylinder;
@@ -886,7 +914,7 @@ namespace Anim8orTransl8or
 
             // Convert the figure to a group
             group1 group = new group1();
-            group.name = new @string() { text = figure?.name };
+            group.name = new @string() { value = figure?.name };
 
             VisualNode fNode = AddGroup(
                callback,
@@ -949,7 +977,7 @@ namespace Anim8orTransl8or
          An8.matrix matrix = new An8.matrix(origin, orientation, scale);
 
          VisualNode node = new VisualNode(
-            MakeUnique(group.name?.text, null, usedNames),
+            MakeUnique(group.name?.value, null, usedNames),
             matrix,
             tag);
 
@@ -1152,7 +1180,7 @@ namespace Anim8orTransl8or
          An8.matrix matrix = new An8.matrix(origin, orientation, scale);
 
          VisualNode node = new VisualNode(
-            MakeUnique(mesh.name?.text, null, usedNames),
+            MakeUnique(mesh.name?.value, null, usedNames),
             matrix,
             tag);
 
@@ -1409,7 +1437,7 @@ namespace Anim8orTransl8or
                if ( materialNumber >= 0 &&
                   materialNumber < materialnames?.Length )
                {
-                  String materialname = materialnames[materialNumber]?.text;
+                  String materialname = materialnames[materialNumber]?.value;
                   Boolean materialFound = false;
 
                   // First try to find the local object material
@@ -1609,7 +1637,7 @@ namespace Anim8orTransl8or
       {
          // Convert the bone to a group
          group1 group = new group1();
-         group.name = new @string() { text = bone.name };
+         group.name = new @string() { value = bone.name };
          group.@base = new @base()
          {
             origin = new origin() { point = origin },
@@ -1650,7 +1678,7 @@ namespace Anim8orTransl8or
                library,
                group2,
                namedobject,
-               namedobject?.scale?.text ?? 1.0);
+               namedobject?.scale?.value ?? 1.0);
 
             node.Link(nNode);
 
@@ -1661,7 +1689,7 @@ namespace Anim8orTransl8or
                {
                   // Convert the object to a group
                   group1 group3 = new group1();
-                  group3.name = new @string() { text = @object?.name };
+                  group3.name = new @string() { value = @object?.name };
                   group3.mesh = @object?.mesh;
                   group3.sphere = @object?.sphere;
                   group3.cylinder = @object?.cylinder;
@@ -1690,7 +1718,7 @@ namespace Anim8orTransl8or
          // Note: Anim8or v1.00 ignores the root bone's length.
          if ( !rootBone )
          {
-            Double length = bone.length?.text ?? 0.0;
+            Double length = bone.length?.value ?? 0.0;
             origin = new point(0, length, 0);
          }
 
@@ -1784,7 +1812,7 @@ namespace Anim8orTransl8or
                new weights[0] )
             {
                VisualNode mNode = node.Find(
-                  v => v.Mesh?.name?.text == weights.meshname);
+                  v => v.Mesh?.name?.value == weights.meshname);
 
                if ( mNode != null )
                {
@@ -1816,11 +1844,11 @@ namespace Anim8orTransl8or
             // The mesh is weighted 100% by the parent bone
             @string[] weightedby = new @string[1]
             {
-               new @string() { text = bone.name },
+               new @string() { value = bone.name },
             };
 
             weights weights = new weights();
-            weights.meshname = node.Mesh.name?.text;
+            weights.meshname = node.Mesh.name?.value;
 
             weights.weightdata = new weightdata[
                node.Mesh.points?.point?.Length ?? 0];
@@ -1920,7 +1948,7 @@ namespace Anim8orTransl8or
          // Arrange the bone nodes in the "weighedby" order
          for ( Int32 i = 0; i < weightedby?.Length; i++ )
          {
-            String boneName = weightedby[i].text;
+            String boneName = weightedby[i].value;
 
             for ( Int32 j = 0; j < boneNodes.Count; j++ )
             {
@@ -2205,7 +2233,7 @@ namespace Anim8orTransl8or
 
             VisualNode fNode = parentNode.Find(
                v => v.Tag is figure f &&
-               f.name == sequence.figure?.text);
+               f.name == sequence.figure?.value);
 
             VisualNode bNode = fNode?.Children.Find(
                v => v.Tag == (fNode.Tag as figure)?.bone);
@@ -2451,7 +2479,7 @@ namespace Anim8orTransl8or
 
          String boneName = (bNode.Tag as bone1)?.name;
          const Int64 minFrame = 0;
-         Int64 maxFrame = sequence?.frames?.text ?? 0;
+         Int64 maxFrame = sequence?.frames?.value ?? 0;
 
          foreach ( jointangle j in sequence?.jointangle ?? new jointangle[0] )
          {
@@ -2476,7 +2504,7 @@ namespace Anim8orTransl8or
          if ( an8.environment?.limitplayback != null &&
             an8.environment.framerate != null )
          {
-            framesPerSecond = an8.environment.framerate.text;
+            framesPerSecond = an8.environment.framerate.value;
          }
 
          for ( Int32 i = 0; i < keyFrames.Count; i++ )

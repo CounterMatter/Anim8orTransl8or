@@ -1,4 +1,4 @@
-﻿// Copyright © 2024 Contingent Games.
+﻿// Copyright © 2025 Contingent Games.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -55,7 +55,7 @@ namespace Anim8orTransl8or.Utility
          List<point> normals = new List<point>();
 
          // Note: These defaults and limits were reversed engineered.
-         Double smoothAngle = (m2.smoothangle?.text ?? 45).Limit(0, 180);
+         Double smoothAngle = (m2.smoothangle?.value ?? 45).Limit(0, 180);
 
          Double cosAngle = Math.Cos(smoothAngle * Math.PI / 180);
          Int32 faceCount = m2.faces?.facedata?.Length ?? 0;
@@ -66,12 +66,12 @@ namespace Anim8orTransl8or.Utility
          {
             if ( m2.points?.point == null || m2.points.point.Length == 0 )
             {
-               callback($"The \"{m2.name?.text}\" mesh does not have any points, so no normals can be calculated.");
+               callback($"The \"{m2.name?.value}\" mesh does not have any points, so no normals can be calculated.");
             }
 
             if ( m2.faces?.facedata == null || m2.faces.facedata.Length == 0 )
             {
-               callback($"The \"{m2.name?.text}\" mesh does not have any faces, so no normals can be calculated.");
+               callback($"The \"{m2.name?.value}\" mesh does not have any faces, so no normals can be calculated.");
             }
          }
 
@@ -108,7 +108,7 @@ namespace Anim8orTransl8or.Utility
             }
             else
             {
-               callback?.Invoke($"The \"{m2.name?.text}\" mesh's face {i} is invalid.");
+               callback?.Invoke($"The \"{m2.name?.value}\" mesh's face {i} is invalid.");
                normals.Add(new point(0, 1, 0));
             }
 
