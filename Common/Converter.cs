@@ -86,9 +86,7 @@ namespace Anim8orTransl8or
 
             frontLight.color = new color()
             {
-               red = 255,
-               green = 255,
-               blue = 255,
+               point = new point(255, 255, 255)
             };
 
             frontLight.infinite = new empty();
@@ -117,9 +115,8 @@ namespace Anim8orTransl8or
 
             backLight.color = new color()
             {
-               red = 255,
-               green = 255,
-               blue = 178, // Note: This number is just a guess.
+               // Note: This blue component is just a guess.
+               point = new point(255, 255, 178)
             };
 
             backLight.infinite = new empty();
@@ -455,9 +452,9 @@ namespace Anim8orTransl8or
             color.Values = new Double[]
             {
                // Note: These defaults and limits were reversed engineered.
-               (lightNode.Light?.color?.red ?? 255).Limit(0, 255) / 255.0,
-               (lightNode.Light?.color?.green ?? 255).Limit(0, 255) / 255.0,
-               (lightNode.Light?.color?.blue ?? 255).Limit(0, 255) / 255.0,
+               (lightNode.Light?.color?.point.x ?? 255).Limit(0, 255) / 255.0,
+               (lightNode.Light?.color?.point.y ?? 255).Limit(0, 255) / 255.0,
+               (lightNode.Light?.color?.point.z ?? 255).Limit(0, 255) / 255.0,
             };
          }
       }

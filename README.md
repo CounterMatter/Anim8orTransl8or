@@ -296,15 +296,29 @@ more accurately, or creating unit tests are also appreciated.
  * Thanks, ThinMatrix, for a great reference for COLLADA files (https://www.youtube.com/watch?v=z0jb1OBw45I)
 
 ## Change log
+ * Anim8orTransl8or v0.8.1
+   * Fixed ANIM8OR "camera"'s scale to be a single float
+     * The spec documents a scale object (with three floats), and it wasn't clear that this scale was different
+   * Fixed ANIM8OR "figureelement"'s scale to be a single float
+   * Renamed ANIM8OR "figureelement"'s receiveshadow to receiveshadows
+     * The spec is missing the 's'
+   * Fixed ANIM8OR "objectelement"'s scale to be a single float
+   * Renamed ANIM8OR "objectelement"'s receiveshadow to receiveshadows
+   * Fixed ANIM8OR "light"'s scale to be a single float
+   * Fixed ANIM8OR "light"'s percentshadow to be a float
+     * The spec doesn't document the field's type
+   * Fixed ANIM8OR "null"'s scale to be a single float
+   * Fixed ANIM8OR "light"'s color to be an object containing a point
+     * The spec has two different color chunk formats
  * Anim8orTransl8or v0.8.0
-   * Added conversion for ANIM8OR "morphtarget".
-   * Added support for floating point values in ANIM8OR "size" (even though the spec says they should be int values).
-   * Fixed parsing of ANIM8OR "controller".
-   * Added support for parsing various chunks that aren't used in the conversion.
+   * Added conversion for ANIM8OR "morphtarget"
+   * Added support for floating point values in ANIM8OR "size" (even though the spec says they should be int values)
+   * Fixed parsing of ANIM8OR "controller"
+   * Added support for parsing various chunks that aren't used in the conversion
  * Anim8orTransl8or v0.7.3
-   * Fixed internationalization issues.
+   * Fixed internationalization issues
  * Anim8orTransl8or v0.7.2
-   * Reverted animation interpolation back to LINEAR from HERMITE. For some reason, it doesn't work in Blender.
+   * Reverted animation interpolation back to LINEAR from HERMITE. For some reason, it doesn't work in Blender
  * Anim8orTransl8or v0.7.1
    * Upgraded to .NET 6.0 for cross-platform compatibility
  * Anim8orTransl8or v0.7.0

@@ -939,15 +939,15 @@ namespace Anim8orTransl8or.An8.V100
       public Int64 matno;
 
       /// <summary>
-      /// FLATNORMALNO - The index of the faces normal in the normal array for
-      /// this Mesh. This value is normally set to -1 indicating that there is
-      /// no face normal stored in the file.
+      /// The index of the faces normal in the normal array for this Mesh. This
+      /// value is normally set to -1 indicating that there is no face normal
+      /// stored in the file.
       /// </summary>
       public Int64 flatnormalno;
 
       /// <summary>
-      /// POINTDATA - This is one or more <int-const>s, depending on the value
-      /// of FLAGS. For example:
+      /// This is one or more <int-const>s, depending on the value of FLAGS.
+      /// For example:
       ///
       ///     faces {
       ///         3 5 0 -1 ( (2 6) (0 5) (1 7) )
@@ -1843,34 +1843,34 @@ namespace Anim8orTransl8or.An8.V100
    public class influence
    {
       /// <summary>
-      /// center0 - The location along the bone of the center of the lower end
-      /// of the influence volume.
+      /// The location along the bone of the center of the lower end of the
+      /// influence volume.
       /// </summary>
       public Double center0;
 
       /// <summary>
-      /// inRadius0 - The radius of the inner layer at center0.
+      /// The radius of the inner layer at center0.
       /// </summary>
       public Double inradius0;
 
       /// <summary>
-      /// outRadius0 - The radius of the outer layer at center0.
+      /// The radius of the outer layer at center0.
       /// </summary>
       public Double outradius0;
 
       /// <summary>
-      /// center1 - The location along the bone of the center of the uppper end
+      /// The location along the bone of the center of the uppper end
       /// of the influence volume.
       /// </summary>
       public Double center1;
 
       /// <summary>
-      /// inRadius1 - The radius of the inner layer at center1.
+      /// The radius of the inner layer at center1.
       /// </summary>
       public Double inradius1;
 
       /// <summary>
-      /// outRadius1 - The radius of the outer layer at center1.
+      /// The radius of the outer layer at center1.
       /// </summary>
       public Double outradius1;
    }
@@ -1912,7 +1912,7 @@ namespace Anim8orTransl8or.An8.V100
       public material material;
 
       /// <summary>
-      /// TODO: This was undocumented at the time of writing.
+      /// A scale factor applied to the object before rendering.
       /// </summary>
       public @float scale;
 
@@ -2306,51 +2306,48 @@ namespace Anim8orTransl8or.An8.V100
    public class camera
    {
       /// <summary>
-      /// <$string> - The first thing is the name of the element.
+      /// The first thing is the name of the element.
       /// </summary>
       public String name;
 
       /// <summary>
-      /// <loc> - A <point> for the element's location.
+      /// A <point> for the element's location.
       /// </summary>
       public loc loc;
 
       /// <summary>
-      /// <orientation> - A <quaternion> chunk for the orientation, normally
-      /// this is relative to it's parent's orientation.
+      /// A <quaternion> chunk for the orientation, normally this is relative to
+      /// it's parent's orientation.
       /// </summary>
       public orientation orientation;
 
       /// <summary>
-      /// [ <roll> ] - An int chunk with a value of 1 if the element's
-      /// orientation can "roll" off the vertical, and 0 if it can't.
+      /// An int chunk with a value of 1 if the element's orientation can "roll"
+      /// off the vertical, and 0 if it can't.
       /// </summary>
       public @int roll;
 
       /// <summary>
-      /// [ <facespath> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction of it's path of
-      /// motion.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction of it's path of motion.
       /// </summary>
       public empty facespath;
 
       /// <summary>
-      /// [ <facestarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction to another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction to another element.
       /// </summary>
       public empty facestarget;
 
       /// <summary>
-      /// [ <orienttarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the same orientation as another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the same orientation as another element.
       /// </summary>
       public empty orienttarget;
 
       /// <summary>
-      /// [ <boundtarget> ] - The name of the other element that this one is
-      /// oriented to, if it has the facestarget or orientedtarget chunk.
+      /// The name of the other element that this one is oriented to, if it has
+      /// the facestarget or orientedtarget chunk.
       /// </summary>
       public empty boundtarget;
 
@@ -2365,24 +2362,24 @@ namespace Anim8orTransl8or.An8.V100
       public number number;
 
       /// <summary>
-      /// [ <scale> ] - A scale factor applied to the object before rendering.
+      /// A scale factor applied to the object before rendering.
       /// </summary>
-      public scale scale;
+      public @float scale;
 
       /// <summary>
-      /// <locked> - An int chunk with the value of 1 if this element is
-      /// "locked" from being edited, and a value of 0 otherwise.
+      /// An int chunk with the value of 1 if this element is "locked" from
+      /// being edited, and a value of 0 otherwise.
       /// </summary>
       public @int locked;
 
       /// <summary>
-      /// <controller>* - Zero or more <controller> chunks.
+      /// Zero or more <controller> chunks.
       /// </summary>
       public controller[] controller;
 
       /// <summary>
-      /// <element>*  - Zero or more child elements, whose movement is relative
-      /// to this element's coordinate system.
+      /// Zero or more child elements, whose movement is relative to this
+      /// element's coordinate system.
       /// </summary>
       public element[] element;
    }
@@ -2431,7 +2428,7 @@ namespace Anim8orTransl8or.An8.V100
    public class figureelement
    {
       /// <summary>
-      /// <$string> - The first thing is the name of the element.
+      /// The first thing is the name of the element.
       /// </summary>
       public String name;
 
@@ -2441,53 +2438,50 @@ namespace Anim8orTransl8or.An8.V100
       public String figurename;
 
       /// <summary>
-      /// <loc> - A <point> for the element's location.
+      /// A <point> for the element's location.
       /// </summary>
       public loc loc;
 
       /// <summary>
-      /// <orientation> - A <quaternion> chunk for the orientation, normally
-      /// this is relative to it's parent's orientation.
+      /// A <quaternion> chunk for the orientation, normally this is relative to
+      /// it's parent's orientation.
       /// </summary>
       public orientation orientation;
 
       /// <summary>
-      /// [ <roll> ] - An int chunk with a value of 1 if the element's
-      /// orientation can "roll" off the vertical, and 0 if it can't.
+      /// An int chunk with a value of 1 if the element's orientation can "roll"
+      /// off the vertical, and 0 if it can't.
       /// </summary>
       public @int roll;
 
       /// <summary>
-      /// [ <facespath> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction of it's path of
-      /// motion.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction of it's path of motion.
       /// </summary>
       public empty facespath;
 
       /// <summary>
-      /// [ <facestarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction to another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction to another element.
       /// </summary>
       public empty facestarget;
 
       /// <summary>
-      /// [ <orienttarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the same orientation as another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the same orientation as another element.
       /// </summary>
       public empty orienttarget;
 
       /// <summary>
-      /// [ <boundtarget> ] - The name of the other element that this one is
-      /// oriented to, if it has the facestarget or orientedtarget chunk.
+      /// The name of the other element that this one is oriented to, if it has
+      /// the facestarget or orientedtarget chunk.
       /// </summary>
       public empty boundtarget;
 
       /// <summary>
-      /// [ <scale> ] - A scale factor applied to the object before rendering.
+      /// A scale factor applied to the object before rendering.
       /// </summary>
-      public scale scale;
+      public @float scale;
 
       /// <summary>
       /// This chunk has a value of 1 of the element is visible, and a value of
@@ -2503,12 +2497,13 @@ namespace Anim8orTransl8or.An8.V100
       /// <summary>
       /// If present this object shows shadows on its surface from lights that
       /// cast them.
+      /// Note: This is misspelled in the spec as "receiveshadow".
       /// </summary>
-      public empty receiveshadow;
+      public empty receiveshadows;
 
       /// <summary>
-      /// <locked> - An int chunk with the value of 1 if this element is
-      /// "locked" from being edited, and a value of 0 otherwise.
+      /// An int chunk with the value of 1 if this element is "locked" from
+      /// being edited, and a value of 0 otherwise.
       /// </summary>
       public @int locked;
 
@@ -2519,13 +2514,13 @@ namespace Anim8orTransl8or.An8.V100
       public namedsequence[] namedsequence;
 
       /// <summary>
-      /// <controller>* - Zero or more <controller> chunks.
+      /// Zero or more <controller> chunks.
       /// </summary>
       public controller[] controller;
 
       /// <summary>
-      /// <element>*  - Zero or more child elements, whose movement is relative
-      /// to this element's coordinate system.
+      /// Zero or more child elements, whose movement is relative to this
+      /// element's coordinate system.
       /// </summary>
       public element[] element;
    }
@@ -2540,7 +2535,7 @@ namespace Anim8orTransl8or.An8.V100
    public class objectelement
    {
       /// <summary>
-      /// <$string> - The first thing is the name of the element.
+      /// The first thing is the name of the element.
       /// </summary>
       public String name;
 
@@ -2550,53 +2545,50 @@ namespace Anim8orTransl8or.An8.V100
       public String objectname;
 
       /// <summary>
-      /// <loc> - A <point> for the element's location.
+      /// A <point> for the element's location.
       /// </summary>
       public loc loc;
 
       /// <summary>
-      /// <orientation> - A <quaternion> chunk for the orientation, normally
-      /// this is relative to it's parent's orientation.
+      /// A <quaternion> chunk for the orientation, normally this is relative to
+      /// it's parent's orientation.
       /// </summary>
       public orientation orientation;
 
       /// <summary>
-      /// [ <roll> ] - An int chunk with a value of 1 if the element's
-      /// orientation can "roll" off the vertical, and 0 if it can't.
+      /// An int chunk with a value of 1 if the element's orientation can "roll"
+      /// off the vertical, and 0 if it can't.
       /// </summary>
       public @int roll;
 
       /// <summary>
-      /// [ <facespath> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction of it's path of
-      /// motion.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction of it's path of motion.
       /// </summary>
       public empty facespath;
 
       /// <summary>
-      /// [ <facestarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction to another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction to another element.
       /// </summary>
       public empty facestarget;
 
       /// <summary>
-      /// [ <orienttarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the same orientation as another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the same orientation as another element.
       /// </summary>
       public empty orienttarget;
 
       /// <summary>
-      /// [ <boundtarget> ] - The name of the other element that this one is
-      /// oriented to, if it has the facestarget or orientedtarget chunk.
+      /// The name of the other element that this one is oriented to, if it has
+      /// the facestarget or orientedtarget chunk.
       /// </summary>
       public empty boundtarget;
 
       /// <summary>
-      /// [ <scale> ] - A scale factor applied to the object before rendering.
+      /// A scale factor applied to the object before rendering.
       /// </summary>
-      public scale scale;
+      public @float scale;
 
       /// <summary>
       /// This chunk has a value of 1 of the element is visible, and a value of
@@ -2612,23 +2604,24 @@ namespace Anim8orTransl8or.An8.V100
       /// <summary>
       /// If present this object shows shadows on its surface from lights that
       /// cast them.
+      /// Note: This is misspelled in the spec as "receiveshadow".
       /// </summary>
-      public empty receiveshadow;
+      public empty receiveshadows;
 
       /// <summary>
-      /// <locked> - An int chunk with the value of 1 if this element is
-      /// "locked" from being edited, and a value of 0 otherwise.
+      /// An int chunk with the value of 1 if this element is "locked" from
+      /// being edited, and a value of 0 otherwise.
       /// </summary>
       public @int locked;
 
       /// <summary>
-      /// <controller>* - Zero or more <controller> chunks.
+      /// Zero or more <controller> chunks.
       /// </summary>
       public controller[] controller;
 
       /// <summary>
-      /// <element>*  - Zero or more child elements, whose movement is relative
-      /// to this element's coordinate system.
+      /// Zero or more child elements, whose movement is relative to this
+      /// element's coordinate system.
       /// </summary>
       public element[] element;
    }
@@ -2637,58 +2630,55 @@ namespace Anim8orTransl8or.An8.V100
    public class light
    {
       /// <summary>
-      /// <$string> - The first thing is the name of the element.
+      /// The first thing is the name of the element.
       /// </summary>
       public String name;
 
       /// <summary>
-      /// <loc> - A <point> for the element's location.
+      /// A <point> for the element's location.
       /// </summary>
       public loc loc;
 
       /// <summary>
-      /// <orientation> - A <quaternion> chunk for the orientation, normally
-      /// this is relative to it's parent's orientation.
+      /// A <quaternion> chunk for the orientation, normally this is relative to
+      /// it's parent's orientation.
       /// </summary>
       public orientation orientation;
 
       /// <summary>
-      /// [ <roll> ] - An int chunk with a value of 1 if the element's
-      /// orientation can "roll" off the vertical, and 0 if it can't.
+      /// An int chunk with a value of 1 if the element's orientation can "roll"
+      /// off the vertical, and 0 if it can't.
       /// </summary>
       public @int roll;
 
       /// <summary>
-      /// [ <facespath> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction of it's path of
-      /// motion.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction of it's path of motion.
       /// </summary>
       public empty facespath;
 
       /// <summary>
-      /// [ <facestarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the direction to another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the direction to another element.
       /// </summary>
       public empty facestarget;
 
       /// <summary>
-      /// [ <orienttarget> ] - An optional chunk that controls whether the
-      /// element's orientation is relative to the same orientation as another
-      /// element.
+      /// An optional chunk that controls whether the element's orientation is
+      /// relative to the same orientation as another element.
       /// </summary>
       public empty orienttarget;
 
       /// <summary>
-      /// [ <boundtarget> ] - The name of the other element that this one is
-      /// oriented to, if it has the facestarget or orientedtarget chunk.
+      /// The name of the other element that this one is oriented to, if it has
+      /// the facestarget or orientedtarget chunk.
       /// </summary>
       public empty boundtarget;
 
       /// <summary>
-      /// [ <scale> ] - A scale factor applied to the object before rendering.
+      /// A scale factor applied to the object before rendering.
       /// </summary>
-      public scale scale;
+      public @float scale;
 
       /// <summary>
       /// The three values in <point> represent the red, green and blue
@@ -2761,7 +2751,7 @@ namespace Anim8orTransl8or.An8.V100
       /// <summary>
       /// TODO: What does this mean?
       /// </summary>
-      public empty percentshadow;
+      public @float percentshadow;
 
       /// <summary>
       ///  This chunk enables ray tracing of shadows for this light.
@@ -2807,101 +2797,99 @@ namespace Anim8orTransl8or.An8.V100
       public empty montecarlo;
 
       /// <summary>
-      /// <locked> - An int chunk with the value of 1 if this element is
-      /// "locked" from being edited, and a value of 0 otherwise.
+      /// An int chunk with the value of 1 if this element is "locked" from
+      /// being edited, and a value of 0 otherwise.
       /// </summary>
       public @int locked;
 
       /// <summary>
-      /// <controller>* - Zero or more <controller> chunks.
+      /// Zero or more <controller> chunks.
       /// </summary>
       public controller[] controller;
 
       /// <summary>
-      /// <element>*  - Zero or more child elements, whose movement is relative
-      /// to this element's coordinate system.
+      /// Zero or more child elements, whose movement is relative to this
+      /// element's coordinate system.
       /// </summary>
       public element[] element;
    }
 
    public class color
    {
-      public Double red;
-      public Double green;
-      public Double blue;
+      public point point;
    }
    #endregion
 
    public class @null
    {
       /// <summary>
-      /// <$string> - The first thing is the name of the element.
+      /// The first thing is the name of the element.
       /// </summary>
       public String name;
 
       /// <summary>
-      /// <loc> - A <point> for the element's location.
+      /// A <point> for the element's location.
       /// </summary>
       public loc loc;
 
       /// <summary>
-      /// <orientation> - A <quaternion> chunk for the orientation, normally
-      /// this is relative to it's parent's orientation.
+      /// A <quaternion> chunk for the orientation, normally this is relative to
+      /// it's parent's orientation.
       /// </summary>
       public orientation orientation;
 
       /// <summary>
-      /// [ <roll> ] - An int chunk with a value of 1 if the element's
+      /// An int chunk with a value of 1 if the element's
       /// orientation can "roll" off the vertical, and 0 if it can't.
       /// </summary>
       public @int roll;
 
       /// <summary>
-      /// [ <facespath> ] - An optional chunk that controls whether the
+      /// An optional chunk that controls whether the
       /// element's orientation is relative to the direction of it's path of
       /// motion.
       /// </summary>
       public empty facespath;
 
       /// <summary>
-      /// [ <facestarget> ] - An optional chunk that controls whether the
+      /// An optional chunk that controls whether the
       /// element's orientation is relative to the direction to another
       /// element.
       /// </summary>
       public empty facestarget;
 
       /// <summary>
-      /// [ <orienttarget> ] - An optional chunk that controls whether the
+      /// An optional chunk that controls whether the
       /// element's orientation is relative to the same orientation as another
       /// element.
       /// </summary>
       public empty orienttarget;
 
       /// <summary>
-      /// [ <boundtarget> ] - The name of the other element that this one is
+      /// The name of the other element that this one is
       /// oriented to, if it has the facestarget or orientedtarget chunk.
       /// </summary>
       public empty boundtarget;
 
       /// <summary>
-      /// [ <scale> ] - A scale factor applied to the object before rendering.
+      /// A scale factor applied to the object before rendering.
       /// </summary>
-      public scale scale;
+      public @float scale;
 
       /// <summary>
-      /// <locked> - An int chunk with the value of 1 if this element is
-      /// "locked" from being edited, and a value of 0 otherwise.
+      /// An int chunk with the value of 1 if this element is "locked" from
+      /// being edited, and a value of 0 otherwise.
       /// </summary>
       public @int locked;
 
       /// <summary>
-      /// <controller>* - Zero or more <controller> chunks.
+      /// Zero or more <controller> chunks.
       /// </summary>
       public controller[] controller;
 
       /// <summary>
-      /// <element>*  - Zero or more child elements, whose movement is relative
-      /// to this element's coordinate system.
+      /// Zero or more child elements, whose movement is relative to this
+      /// element's coordinate system.
       /// </summary>
       public element[] element;
    }
